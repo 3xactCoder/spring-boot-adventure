@@ -1,12 +1,14 @@
 package org.example.springbootadventure.service;
 
+import org.example.springbootadventure.dto.BookDto;
+import org.example.springbootadventure.dto.CreateBookRequestDto;
+
 import java.util.List;
-import org.example.springbootadventure.model.Book;
 
 public interface BookService {
-    Book save(Book book);
+    BookDto createBook(CreateBookRequestDto requestDto);
 
-    List<Book> findAll();
+    List<BookDto> getAll();
+
+    BookDto getBookById(Long id);
 }
-
-

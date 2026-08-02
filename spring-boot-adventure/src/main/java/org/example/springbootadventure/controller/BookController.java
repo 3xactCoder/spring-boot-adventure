@@ -39,13 +39,13 @@ public class BookController {
     }
 
     @PutMapping("/{id}")
-    public BookDto updateBook(Long id, CreateBookRequestDto requestDto) {
+    public BookDto updateBook(@PathVariable Long id,@RequestBody CreateBookRequestDto requestDto) {
         return bookService.updateBook(id,requestDto);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
-    public void deleteById(Long id) {
+    public void deleteById(@PathVariable Long id) {
         bookService.deleteById(id);
     }
 }

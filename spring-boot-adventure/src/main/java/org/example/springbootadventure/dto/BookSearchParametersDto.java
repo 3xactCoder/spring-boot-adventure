@@ -1,4 +1,4 @@
 package org.example.springbootadventure.dto;
 
-public record BookSearchParametersDto() {
+public record BookSearchParametersDto(String[] titles, String[] authors) {
 }

@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 @Entity
 @Table(name = "books")
@@ -41,6 +42,7 @@ public class Book {
 
     @Column(nullable = false)
     private boolean isDeleted = false;
+
 }
 
 

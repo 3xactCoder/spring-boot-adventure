@@ -5,6 +5,8 @@ import org.example.springbootadventure.dto.BookSearchParametersDto;
 import org.example.springbootadventure.model.Book;
 import org.example.springbootadventure.repository.SpecificationBuilder;
 import org.example.springbootadventure.repository.SpecificationProviderManager;
+import org.example.springbootadventure.repository.spec.AuthorSpecificationProvider;
+import org.example.springbootadventure.repository.spec.TitleSpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
@@ -19,12 +21,12 @@ public class BookSpecificationBuilder implements SpecificationBuilder<Book, Book
 
         if (searchParameters.authors() != null && searchParameters.authors().length > 0) {
             spec = spec.and(bookSpecificationProviderManager
-                    .getSpecificationProvider("author")
+                    .getSpecificationProvider(AuthorSpecificationProvider.AUTHOR_KEY)
                     .getSpecification(searchParameters.authors()));
         }
         if (searchParameters.titles() != null && searchParameters.titles().length > 0) {
             spec = spec.and(bookSpecificationProviderManager
-                    .getSpecificationProvider("title")
+                    .getSpecificationProvider(TitleSpecificationProvider.TITLE_KEY)
                     .getSpecification(searchParameters.titles()));
         }
         return spec;

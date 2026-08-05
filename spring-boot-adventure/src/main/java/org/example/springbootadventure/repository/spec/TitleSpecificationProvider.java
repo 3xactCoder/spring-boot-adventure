@@ -10,9 +10,11 @@ import java.util.Arrays;
 @Component
 
 public class TitleSpecificationProvider implements SpecificationProvider<Book> {
+    public static final String TITLE_KEY = "title";
+
     @Override
     public String getKey() {
-        return "title";
+        return TITLE_KEY;
     }
 
     @Override

@@ -1,6 +1,8 @@
 package org.example.springbootadventure.controller;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.springbootadventure.dto.BookDto;
 import org.example.springbootadventure.dto.BookSearchParametersDto;
@@ -35,7 +37,7 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.createBook(bookDto);
     }
 

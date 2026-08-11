@@ -31,7 +31,7 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
                 .map(this::getErrorMessage)
                 .toList();
         body.put("errors", errors);
-        return new ResponseEntity<>(body, headers, status);
+        return new ResponseEntity<>(body, headers, BAD_REQUEST);
     }
 
     @ExceptionHandler(EntityNotFoundException.class)

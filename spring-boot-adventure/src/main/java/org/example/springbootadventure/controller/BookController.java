@@ -1,6 +1,8 @@
 package org.example.springbootadventure.controller;
 
 import java.util.List;
+
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.springbootadventure.dto.BookDto;
 import org.example.springbootadventure.dto.BookSearchParametersDto;
@@ -35,12 +37,12 @@ public class BookController {
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public BookDto createBook(@RequestBody CreateBookRequestDto bookDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto bookDto) {
         return bookService.createBook(bookDto);
     }
 
     @PutMapping("/{id}")
-    public BookDto updateBook(@PathVariable Long id,@RequestBody CreateBookRequestDto requestDto) {
+    public BookDto updateBook(@PathVariable Long id,@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.updateBook(id,requestDto);
     }
 

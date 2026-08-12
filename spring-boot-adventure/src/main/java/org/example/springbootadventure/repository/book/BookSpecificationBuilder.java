@@ -1,7 +1,7 @@
 package org.example.springbootadventure.repository.book;
 
 import lombok.RequiredArgsConstructor;
-import org.example.springbootadventure.dto.BookSearchParametersDto;
+import org.example.springbootadventure.dto.book.BookSearchParametersDto;
 import org.example.springbootadventure.model.Book;
 import org.example.springbootadventure.repository.SpecificationBuilder;
 import org.example.springbootadventure.repository.SpecificationProviderManager;

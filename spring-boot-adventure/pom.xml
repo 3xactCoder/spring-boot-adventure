@@ -114,11 +114,13 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <configLocation>${maven.checkstyle.plugin.configLocation}</configLocation>
+                    <configLocation>${project.basedir}/checkstyle.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
-                    <sourceDirectories>src/main</sourceDirectories>
+                    <sourceDirectories>
+                        <sourceDirectory>${project.basedir}/src/main/java</sourceDirectory>
+                    </sourceDirectories>
                 </configuration>
             </plugin>
         </plugins>

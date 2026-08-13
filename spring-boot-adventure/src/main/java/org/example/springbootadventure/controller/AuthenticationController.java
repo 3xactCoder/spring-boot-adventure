@@ -1,25 +1,33 @@
 package org.example.springbootadventure.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.example.springbootadventure.dto.user.UserRegistrationRequestDto;
 import org.example.springbootadventure.dto.user.UserResponseDto;
 import org.example.springbootadventure.exceptions.RegistrationException;
 import org.example.springbootadventure.service.user.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequiredArgsConstructor
+@Tag(name = "Authentication management", description = "Endpoints for user authentication and registration")
 @RestController
-@RequestMapping("/api/auth")
+@RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthenticationController {
     private final UserService userService;
 
     @PostMapping("/registration")
-    public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto request)
+    @ResponseStatus(HttpStatus.CREATED)
+    @Operation(summary = "Register a new user", description = "Register a new user with required details")
+    public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
-        return userService.register(request);
+        return userService.register(requestDto);
     }
 }
+

@@ -1,12 +1,11 @@
-package org.example.springbootadventure.service;
+package org.example.springbootadventure.service.book;
 
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
-import org.example.springbootadventure.dto.BookSearchParametersDto;
+import org.example.springbootadventure.dto.book.BookSearchParametersDto;
 import org.example.springbootadventure.mapper.BookMapper;
-import org.example.springbootadventure.dto.BookDto;
-import org.example.springbootadventure.dto.CreateBookRequestDto;
+import org.example.springbootadventure.dto.book.BookDto;
+import org.example.springbootadventure.dto.book.CreateBookRequestDto;
 import org.example.springbootadventure.exceptions.EntityNotFoundException;
 import org.example.springbootadventure.model.Book;
 import org.example.springbootadventure.repository.book.BookRepository;

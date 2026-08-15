@@ -1,4 +1,4 @@
-package org.example.springbootadventure.dto;
+package org.example.springbootadventure.dto.book;
 
 import lombok.Data;
 

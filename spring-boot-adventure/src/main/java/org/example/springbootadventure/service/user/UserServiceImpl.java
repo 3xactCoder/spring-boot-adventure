@@ -2,6 +2,8 @@ package org.example.springbootadventure.service.user;
 
 import jakarta.transaction.Transactional;
 import java.util.Set;
+
+import lombok.RequiredArgsConstructor;
 import org.example.springbootadventure.dto.user.UserRegistrationRequestDto;
 import org.example.springbootadventure.dto.user.UserResponseDto;
 import org.example.springbootadventure.exceptions.EntityNotFoundException;
@@ -14,6 +16,7 @@ import org.example.springbootadventure.repository.user.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {
@@ -22,15 +25,6 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           UserMapper userMapper,
-                           PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.userMapper = userMapper;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto)

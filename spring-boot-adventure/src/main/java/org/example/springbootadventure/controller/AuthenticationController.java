@@ -4,9 +4,12 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.example.springbootadventure.dto.user.UserLoginRequestDto;
+import org.example.springbootadventure.dto.user.UserLoginResponseDto;
 import org.example.springbootadventure.dto.user.UserRegistrationRequestDto;
 import org.example.springbootadventure.dto.user.UserResponseDto;
 import org.example.springbootadventure.exceptions.RegistrationException;
+import org.example.springbootadventure.security.AuthenticationService;
 import org.example.springbootadventure.service.user.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final UserService userService;
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
@@ -29,5 +33,11 @@ public class AuthenticationController {
             throws RegistrationException {
         return userService.register(requestDto);
     }
+
+    @PostMapping("/login")
+    public UserLoginResponseDto login(@RequestBody UserLoginRequestDto request) {
+        return authenticationService.authenticate(request);
+    }
+
 }
 

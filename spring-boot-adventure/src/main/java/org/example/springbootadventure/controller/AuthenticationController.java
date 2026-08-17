@@ -26,7 +26,7 @@ public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/registration")
+    @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Register a new user", description = "Register a new user with required details")
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)
@@ -35,7 +35,8 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public UserLoginResponseDto login(@RequestBody UserLoginRequestDto request) {
+    @Operation(summary = "Login user", description = "Authenticate user and return JWT token")
+    public UserLoginResponseDto login(@RequestBody @Valid UserLoginRequestDto request) {
         return authenticationService.authenticate(request);
     }
 

@@ -26,7 +26,7 @@ public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "Register a new user", description = "Register a new user with required details")
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)

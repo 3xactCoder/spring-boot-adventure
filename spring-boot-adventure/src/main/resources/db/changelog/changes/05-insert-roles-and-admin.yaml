@@ -28,7 +28,6 @@ databaseChangeLog:
                   value: admin@example.com
               - column:
                   name: password
-                  # BCrypt хеш для пароля 'admin123' у повному форматі
                   value: '$2a$10$8.1Jp1f/1z4h/mUjSgJbS.xY/j.J6K/v53M/qQeE0G9qYyM.7QYqW'
               - column:
                   name: first_name

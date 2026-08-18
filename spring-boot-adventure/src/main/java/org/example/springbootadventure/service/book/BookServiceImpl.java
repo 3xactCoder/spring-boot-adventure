@@ -2,6 +2,7 @@ package org.example.springbootadventure.service.book;
 
 
 import lombok.RequiredArgsConstructor;
+import org.example.springbootadventure.dto.book.BookDtoWithoutCategoryIds;
 import org.example.springbootadventure.dto.book.BookSearchParametersDto;
 import org.example.springbootadventure.mapper.BookMapper;
 import org.example.springbootadventure.dto.book.BookDto;
@@ -14,6 +15,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -62,6 +65,14 @@ public class BookServiceImpl implements BookService {
         Specification<Book> bookSpecification = bookSpecificationBuilder.build(params);
         return bookRepository.findAll(bookSpecification,pageable)
                 .map(bookMapper::toDto);
+
+    }
+
+    @Override
+    public List<BookDtoWithoutCategoryIds> findAllByCategoryId(Long categoryId) {
+        return bookRepository.findAllByCategoryId(categoryId).stream()
+                .map(bookMapper::toDtoWithoutCategories)
+                .toList();
 
     }
 }

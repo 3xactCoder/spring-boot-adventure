@@ -7,8 +7,10 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.example.springbootadventure.dto.book.BookDtoWithoutCategoryIds;
 import org.example.springbootadventure.dto.category.CategoryDto;
+import org.example.springbootadventure.dto.category.CreateCategoryRequestDto;
 import org.example.springbootadventure.service.book.BookService;
 import org.example.springbootadventure.service.category.CategoryService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -34,14 +36,14 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CategoryDto createCategory(@RequestBody @Valid CategoryDto categoryDto) {
+    public CategoryDto createCategory(@RequestBody @Valid CreateCategoryRequestDto categoryDto) {
         return categoryService.save(categoryDto);
     }
 
     @Operation(summary = "Get all categories", description = "Available for USER and ADMIN")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping
-    public List<CategoryDto> getAll(Pageable pageable) {
+    public Page<CategoryDto> getAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 
@@ -56,7 +58,7 @@ public class CategoryController {
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public CategoryDto updateCategory(@PathVariable Long id,
-                                      @RequestBody @Valid CategoryDto categoryDto) {
+                                      @RequestBody @Valid CreateCategoryRequestDto categoryDto) {
         return categoryService.update(id, categoryDto);
     }
 
@@ -75,3 +77,4 @@ public class CategoryController {
         return bookService.findAllByCategoryId(id);
     }
 }
+

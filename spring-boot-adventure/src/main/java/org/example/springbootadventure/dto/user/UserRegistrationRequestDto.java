@@ -6,7 +6,6 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import org.example.springbootadventure.validation.FieldMatch;
 
-
 @Data
 @FieldMatch(
         first = "password",
@@ -34,3 +33,4 @@ public class UserRegistrationRequestDto {
 
     private String shippingAddress;
 }
+

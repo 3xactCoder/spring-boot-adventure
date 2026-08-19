@@ -36,16 +36,19 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         auth -> auth
-                                .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**", "/error")
+                                .requestMatchers("/auth/**", "/swagger-ui/**",
+                                        "/v3/api-docs/**", "/error")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .sessionManagement(
-                        session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                        session -> session
+                                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter,
+                        UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(userDetailsService)
                 .build();
     }

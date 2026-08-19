@@ -1,11 +1,10 @@
 package org.example.springbootadventure.repository.spec;
 
+import java.util.Arrays;
 import org.example.springbootadventure.model.Book;
 import org.example.springbootadventure.repository.SpecificationProvider;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
 
 @Component
 
@@ -23,3 +22,5 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
                 .get("title").in(Arrays.stream(params).toArray());
     }
 }
+
+

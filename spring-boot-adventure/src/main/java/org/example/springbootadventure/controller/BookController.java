@@ -22,7 +22,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Book management", description = "Endpoints for managing books catalog")
+@Tag(name = "Book management",
+        description = "Endpoints for managing books catalog")
 @RestController
 @RequestMapping("/books")
 @RequiredArgsConstructor
@@ -31,21 +32,24 @@ public class BookController {
 
     @GetMapping
     @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Get all books", description = "Retrieve a paginated list of all available books")
+    @Operation(summary = "Get all books",
+            description = "Retrieve a paginated list of all available books")
     public Page<BookDto> getAll(Pageable pageable) {
         return bookService.getAll(pageable);
     }
 
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Get book by ID", description = "Retrieve details of a specific book by its ID")
+    @Operation(summary = "Get book by ID",
+            description = "Retrieve details of a specific book by its ID")
     public BookDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
     @GetMapping("/search")
     @PreAuthorize("hasRole('USER')")
-    @Operation(summary = "Search books", description = "Search books based on dynamic criteria with pagination")
+    @Operation(summary = "Search books",
+            description = "Search books based on dynamic criteria with pagination")
     public Page<BookDto> searchBooks(BookSearchParametersDto searchParameters, Pageable pageable) {
         return bookService.search(searchParameters, pageable);
     }
@@ -53,22 +57,26 @@ public class BookController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Create a new book", description = "Add a new book to the catalog (Admin only)")
+    @Operation(summary = "Create a new book",
+            description = "Add a new book to the catalog (Admin only)")
     public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Update a book", description = "Update an existing book's details by ID (Admin only)")
-    public BookDto updateBook(@PathVariable Long id, @RequestBody @Valid CreateBookRequestDto requestDto) {
+    @Operation(summary = "Update a book",
+            description = "Update an existing book's details by ID (Admin only)")
+    public BookDto updateBook(@PathVariable Long id,
+                              @RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.updateBook(id, requestDto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PreAuthorize("hasRole('ADMIN')")
-    @Operation(summary = "Delete a book", description = "Soft delete a book from the catalog by ID (Admin only)")
+    @Operation(summary = "Delete a book",
+            description = "Soft delete a book from the catalog by ID (Admin only)")
     public void deleteBook(@PathVariable Long id) {
         bookService.deleteById(id);
     }

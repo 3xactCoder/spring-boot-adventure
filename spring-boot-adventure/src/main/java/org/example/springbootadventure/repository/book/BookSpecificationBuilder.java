@@ -12,7 +12,8 @@ import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
 @Component
-public class BookSpecificationBuilder implements SpecificationBuilder<Book, BookSearchParametersDto> {
+public class BookSpecificationBuilder implements SpecificationBuilder<Book,
+        BookSearchParametersDto> {
     private final SpecificationProviderManager<Book> bookSpecificationProviderManager;
 
     @Override
@@ -32,3 +33,4 @@ public class BookSpecificationBuilder implements SpecificationBuilder<Book, Book
         return spec;
     }
 }
+

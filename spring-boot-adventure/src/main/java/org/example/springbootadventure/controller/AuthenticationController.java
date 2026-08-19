@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Authentication management", description = "Endpoints for user authentication and registration")
+@Tag(name = "Authentication management",
+        description = "Endpoints for user authentication and registration")
 @RestController
 @RequestMapping("/auth")
 @RequiredArgsConstructor
@@ -26,9 +27,10 @@ public class AuthenticationController {
     private final UserService userService;
     private final AuthenticationService authenticationService;
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     @ResponseStatus(HttpStatus.CREATED)
-    @Operation(summary = "Register a new user", description = "Register a new user with required details")
+    @Operation(summary = "Register a new user",
+            description = "Register a new user with required details")
     public UserResponseDto register(@RequestBody @Valid UserRegistrationRequestDto requestDto)
             throws RegistrationException {
         return userService.register(requestDto);

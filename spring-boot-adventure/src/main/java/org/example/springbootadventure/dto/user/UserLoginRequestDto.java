@@ -7,12 +7,13 @@ import lombok.Data;
 
 @Data
 public class UserLoginRequestDto {
-        @NotBlank
-        @Email
-        @Size(min = 4, max = 50)
-        String email;
+    @NotBlank
+    @Email
+    @Size(min = 4, max = 50)
+    private String email;
 
-        @NotBlank
-        @Size(min = 6, max = 100)
-        String password;
+    @NotBlank
+    @Size(min = 6, max = 100)
+    private String password;
+
 }

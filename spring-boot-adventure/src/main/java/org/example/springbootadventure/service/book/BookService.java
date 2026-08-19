@@ -1,16 +1,12 @@
 package org.example.springbootadventure.service.book;
 
+import java.util.List;
 import org.example.springbootadventure.dto.book.BookDto;
 import org.example.springbootadventure.dto.book.BookDtoWithoutCategoryIds;
 import org.example.springbootadventure.dto.book.BookSearchParametersDto;
 import org.example.springbootadventure.dto.book.CreateBookRequestDto;
-import org.example.springbootadventure.model.Book;
 import org.springframework.data.domain.Page;
-
-
 import org.springframework.data.domain.Pageable;
-
-import java.util.List;
 
 public interface BookService {
     BookDto createBook(CreateBookRequestDto requestDto);

@@ -1,5 +1,8 @@
 package org.example.springbootadventure.mapper;
 
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 import org.example.springbootadventure.config.MapperConfig;
 import org.example.springbootadventure.dto.book.BookDto;
 import org.example.springbootadventure.dto.book.BookDtoWithoutCategoryIds;
@@ -11,9 +14,6 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.mapstruct.Named;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mapper(config = MapperConfig.class)
 public interface BookMapper {
@@ -50,3 +50,4 @@ public interface BookMapper {
                 .collect(Collectors.toSet());
     }
 }
+

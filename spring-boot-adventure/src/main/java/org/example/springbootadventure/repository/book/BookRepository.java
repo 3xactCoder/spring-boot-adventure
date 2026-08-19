@@ -1,12 +1,10 @@
 package org.example.springbootadventure.repository.book;
 
-import org.example.springbootadventure.dto.book.BookDtoWithoutCategoryIds;
+import java.util.List;
 import org.example.springbootadventure.model.Book;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
-
-import java.util.List;
 
 public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
 

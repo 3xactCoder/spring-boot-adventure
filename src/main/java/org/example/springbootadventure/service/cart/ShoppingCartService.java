@@ -4,9 +4,7 @@ import org.example.springbootadventure.dto.cart.AddToCartRequestDto;
 import org.example.springbootadventure.dto.cart.ShoppingCartDto;
 import org.example.springbootadventure.dto.cart.UpdateCartItemRequestDto;
 import org.example.springbootadventure.model.User;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface ShoppingCartService {
     ShoppingCartDto getShoppingCartbyId(Long userId);
 

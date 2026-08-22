@@ -1,5 +1,6 @@
 package org.example.springbootadventure.service.order;
 
+import jakarta.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -10,6 +11,7 @@ import org.example.springbootadventure.dto.order.OrderDto;
 import org.example.springbootadventure.dto.order.OrderItemDto;
 import org.example.springbootadventure.dto.order.UpdateOrderStatusRequestDto;
 import org.example.springbootadventure.exceptions.EntityNotFoundException;
+import org.example.springbootadventure.exceptions.OrderProcessingException;
 import org.example.springbootadventure.mapper.OrderItemMapper;
 import org.example.springbootadventure.mapper.OrderMapper;
 import org.example.springbootadventure.model.CartItem;
@@ -24,6 +26,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class OrderServiceImpl implements OrderService {
 
@@ -40,7 +43,8 @@ public class OrderServiceImpl implements OrderService {
                         + userId)
         );
         if (shoppingCart.getCartItems().isEmpty()) {
-            throw new IllegalStateException("Cannot place order with an empty cart");
+            throw new OrderProcessingException("Cannot place order with an empty cart for user id: "
+                    + userId);
         }
 
         Order order = new Order();
@@ -105,9 +109,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     private Order getOrderForUser(Long userId, Long orderId) {
-        Order order = orderRepository.findByIdAndUserId(orderId, userId)
+        return orderRepository.findByIdAndUserId(orderId, userId)
                 .orElseThrow(() -> new EntityNotFoundException("Can't find order with id: "
                         + orderId));
-        return order;
     }
 }

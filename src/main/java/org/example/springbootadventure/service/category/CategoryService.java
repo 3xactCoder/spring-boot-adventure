@@ -4,9 +4,7 @@ import org.example.springbootadventure.dto.category.CategoryDto;
 import org.example.springbootadventure.dto.category.CreateCategoryRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
-@Service
 public interface CategoryService {
     Page<CategoryDto> findAll(Pageable pageable);
 

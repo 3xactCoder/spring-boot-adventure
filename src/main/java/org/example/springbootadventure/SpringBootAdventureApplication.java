@@ -10,4 +10,3 @@ public class SpringBootAdventureApplication {
         SpringApplication.run(SpringBootAdventureApplication.class, args);
     }
 }
-

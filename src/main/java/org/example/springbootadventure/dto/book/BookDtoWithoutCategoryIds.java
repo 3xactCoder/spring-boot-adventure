@@ -19,6 +19,3 @@ public class BookDtoWithoutCategoryIds {
 
     private String coverImage;
 }
-
-
-

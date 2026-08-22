@@ -101,5 +101,3 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
                         "Can't find shopping cart for user id: " + userId));
     }
 }
-
-

@@ -21,4 +21,3 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
                 .get(TITLE_KEY).in(Arrays.stream(params).toArray());
     }
 }
-

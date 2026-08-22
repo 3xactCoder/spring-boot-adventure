@@ -33,4 +33,3 @@ public class UserRegistrationRequestDto {
 
     private String shippingAddress;
 }
-

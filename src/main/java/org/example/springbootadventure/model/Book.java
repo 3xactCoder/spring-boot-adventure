@@ -60,7 +60,3 @@ public class Book {
     private Set<Category> categories = new HashSet<>();
 
 }
-
-
-
-

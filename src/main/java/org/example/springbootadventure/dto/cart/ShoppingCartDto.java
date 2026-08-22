@@ -9,5 +9,3 @@ public class ShoppingCartDto {
     private Long userId;
     private Set<CartItemDto> cartItems;
 }
-
-

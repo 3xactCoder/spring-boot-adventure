@@ -10,6 +10,10 @@
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\controller\CategoryController.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\controller\OrderController.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\controller\ShoppingCartController.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\book\BookDto.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\book\BookDtoWithoutCategoryIds.java">
@@ -18,9 +22,25 @@
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\book\CreateBookRequestDto.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\cart\AddToCartRequestDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\cart\CartItemDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\cart\ShoppingCartDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\cart\UpdateCartItemRequestDto.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\category\CategoryDto.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\category\CreateCategoryRequestDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\order\CreateOrderRequestDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\order\OrderDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\order\OrderItemDto.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\order\UpdateOrderStatusRequestDto.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\dto\user\UserLoginRequestDto.java">
 </file>
@@ -40,15 +60,31 @@
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\BookMapper.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\CartItemMapper.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\CategoryMapper.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\OrderItemMapper.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\OrderMapper.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\ShoppingCartMapper.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\mapper\UserMapper.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\Book.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\CartItem.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\Category.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\Order.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\OrderItem.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\Role.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\ShoppingCart.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\model\User.java">
 </file>
@@ -58,7 +94,15 @@
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\book\BookSpecificationProviderManager.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\cart\CartItemRepository.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\cart\ShoppingCartRepository.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\category\CategoryRepository.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\order\OrderItemRepository.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\order\OrderRepository.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\repository\role\RoleRepository.java">
 </file>
@@ -86,9 +130,17 @@
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\book\BookServiceImpl.java">
 </file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\cart\ShoppingCartService.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\cart\ShoppingCartServiceImpl.java">
+</file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\category\CategoryService.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\category\CategoryServiceImpl.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\order\OrderService.java">
+</file>
+<file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\order\OrderServiceImpl.java">
 </file>
 <file name="C:\Users\user\IdeaProjects\spring-boot-adv\spring-boot-adventure\src\main\java\org\example\springbootadventure\service\user\UserService.java">
 </file>

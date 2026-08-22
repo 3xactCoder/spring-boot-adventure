@@ -22,5 +22,3 @@ public class BookDto {
 
     private List<Long> categoryIds;
 }
-
-

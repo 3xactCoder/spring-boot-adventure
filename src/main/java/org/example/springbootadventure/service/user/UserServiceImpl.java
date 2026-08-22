@@ -12,6 +12,7 @@ import org.example.springbootadventure.model.Role;
 import org.example.springbootadventure.model.User;
 import org.example.springbootadventure.repository.role.RoleRepository;
 import org.example.springbootadventure.repository.user.UserRepository;
+import org.example.springbootadventure.service.cart.ShoppingCartService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final UserMapper userMapper;
     private final PasswordEncoder passwordEncoder;
+    private final ShoppingCartService shoppingCartService;
 
     @Override
     public UserResponseDto register(UserRegistrationRequestDto requestDto)
@@ -40,7 +42,7 @@ public class UserServiceImpl implements UserService {
         user.setRoles(Set.of(defaultRole));
 
         User savedUser = userRepository.save(user);
+        shoppingCartService.registerNewShoppingCart(user);
         return userMapper.toDto(savedUser);
     }
 }
-

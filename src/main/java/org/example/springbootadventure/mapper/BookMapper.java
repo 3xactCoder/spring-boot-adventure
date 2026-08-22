@@ -49,5 +49,5 @@ public interface BookMapper {
                 .map(Category::new)
                 .collect(Collectors.toSet());
     }
-}
 
+}

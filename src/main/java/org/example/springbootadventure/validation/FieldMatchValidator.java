@@ -25,4 +25,3 @@ public class FieldMatchValidator implements ConstraintValidator<FieldMatch, Obje
         return Objects.equals(firstValue, secondValue);
     }
 }
-

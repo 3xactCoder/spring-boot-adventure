@@ -9,7 +9,6 @@ import org.mapstruct.MappingTarget;
 
 @Mapper(config = MapperConfig.class)
 public interface CategoryMapper {
-
     CategoryDto toDto(Category category);
 
     Category toEntity(CreateCategoryRequestDto categoryDto);
@@ -17,4 +16,3 @@ public interface CategoryMapper {
     void updateCategoryFromDto(CreateCategoryRequestDto categoryDto,
                                @MappingTarget Category category);
 }
-

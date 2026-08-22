@@ -24,7 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Category management", description = "Endpoints for managing categories")
+@Tag(name = "Category management",
+        description = "Endpoints for managing categories")
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor
@@ -32,7 +33,8 @@ public class CategoryController {
     private final CategoryService categoryService;
     private final BookService bookService;
 
-    @Operation(summary = "Create a new category", description = "Available for ADMIN")
+    @Operation(summary = "Create a new category",
+            description = "Available for ADMIN")
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -40,21 +42,24 @@ public class CategoryController {
         return categoryService.save(categoryDto);
     }
 
-    @Operation(summary = "Get all categories", description = "Available for USER and ADMIN")
+    @Operation(summary = "Get all categories",
+            description = "Available for USER and ADMIN")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping
     public Page<CategoryDto> getAll(Pageable pageable) {
         return categoryService.findAll(pageable);
     }
 
-    @Operation(summary = "Get category by ID", description = "Available for USER and ADMIN")
+    @Operation(summary = "Get category by ID",
+            description = "Available for USER and ADMIN")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/{id}")
     public CategoryDto getCategoryById(@PathVariable Long id) {
         return categoryService.getById(id);
     }
 
-    @Operation(summary = "Update a category", description = "Available for ADMIN")
+    @Operation(summary = "Update a category",
+            description = "Available for ADMIN")
     @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/{id}")
     public CategoryDto updateCategory(@PathVariable Long id,
@@ -62,7 +67,8 @@ public class CategoryController {
         return categoryService.update(id, categoryDto);
     }
 
-    @Operation(summary = "Delete category by ID", description = "Available for ADMIN")
+    @Operation(summary = "Delete category by ID",
+            description = "Available for ADMIN")
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
@@ -70,11 +76,11 @@ public class CategoryController {
         categoryService.deleteById(id);
     }
 
-    @Operation(summary = "Get books by category ID", description = "Available for USER and ADMIN")
+    @Operation(summary = "Get books by category ID",
+            description = "Available for USER and ADMIN")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     @GetMapping("/{id}/books")
     public List<BookDtoWithoutCategoryIds> getBooksByCategoryId(@PathVariable Long id) {
         return bookService.findAllByCategoryId(id);
     }
 }
-

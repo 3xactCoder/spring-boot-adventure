@@ -21,4 +21,3 @@ public class BookSpecificationProviderManager implements SpecificationProviderMa
                         "Can't find correct specification provider for key " + key));
     }
 }
-

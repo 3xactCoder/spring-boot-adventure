@@ -21,4 +21,3 @@ public @interface FieldMatch {
 
     String second();
 }
-

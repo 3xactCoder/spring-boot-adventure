@@ -31,4 +31,3 @@ public class CreateBookRequestDto {
     @NotEmpty
     private List<Long> categoryIds;
 }
-

@@ -7,7 +7,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class TitleSpecificationProvider implements SpecificationProvider<Book> {
     public static final String TITLE_KEY = "title";
 
@@ -19,8 +18,6 @@ public class TitleSpecificationProvider implements SpecificationProvider<Book> {
     @Override
     public Specification<Book> getSpecification(String[] params) {
         return (root, query, criteriaBuilder) -> root
-                .get("title").in(Arrays.stream(params).toArray());
+                .get(TITLE_KEY).in(Arrays.stream(params).toArray());
     }
 }
-
-

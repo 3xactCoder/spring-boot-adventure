@@ -3,4 +3,3 @@ package org.example.springbootadventure.repository;
 public interface SpecificationProviderManager<T> {
     SpecificationProvider<T> getSpecificationProvider(String key);
 }
-

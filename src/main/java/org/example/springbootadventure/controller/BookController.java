@@ -81,4 +81,3 @@ public class BookController {
         bookService.deleteById(id);
     }
 }
-

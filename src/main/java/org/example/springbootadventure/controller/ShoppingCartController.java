@@ -34,7 +34,7 @@ public class ShoppingCartController {
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Get user's shopping cart",
             description = "Retrieve the shopping cart of the logged-in user")
-    ShoppingCartDto getShoppingCart(Authentication authentication) {
+    public ShoppingCartDto getShoppingCart(Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return shoppingCartService.getShoppingCartbyId(user.getId());
     }
@@ -43,7 +43,7 @@ public class ShoppingCartController {
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Add book to cart",
              description = "Add a book item to the logged-in user's shopping cart")
-    ShoppingCartDto addItemShoppingCart(@RequestBody @Valid AddToCartRequestDto requestDto,
+    public ShoppingCartDto addItemShoppingCart(@RequestBody @Valid AddToCartRequestDto requestDto,
                                         Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         return shoppingCartService.saveToCart(user.getId(),requestDto);
@@ -53,7 +53,7 @@ public class ShoppingCartController {
     @PreAuthorize("hasRole('USER')")
     @Operation(summary = "Update book quantity",
              description = "Update the quantity of a book item in the shopping cart")
-    ShoppingCartDto updateBookQuantity(Authentication authentication,
+    public ShoppingCartDto updateBookQuantity(Authentication authentication,
                                         @PathVariable Long cartItemId,
                                         @RequestBody @Valid UpdateCartItemRequestDto requestDto
     ) {
@@ -67,7 +67,7 @@ public class ShoppingCartController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Remove item from cart",
              description = "Remove a book item from the shopping cart")
-    void deleteItemFromCart(@PathVariable Long cartItemId, Authentication authentication) {
+    public void deleteItemFromCart(@PathVariable Long cartItemId, Authentication authentication) {
         User user = (User) authentication.getPrincipal();
         shoppingCartService.deleteItemFromCart(user.getId(), cartItemId);
 

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.math.BigDecimal;
 import java.util.List;
 import org.example.springbootadventure.dto.book.CreateBookRequestDto;
+import org.example.springbootadventure.util.TestUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,14 +49,11 @@ class BookControllerTest {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Create a new book with ADMIN role - 201 Created")
+    @DisplayName("Create a new book with valid data - 201 Created")
     void createBook_ValidRequest_Success() throws Exception {
-        CreateBookRequestDto requestDto = new CreateBookRequestDto();
-        requestDto.setTitle("Clean Code");
-        requestDto.setAuthor("Robert Martin");
-        requestDto.setIsbn("978-0-13-235088-4");
-        requestDto.setPrice(BigDecimal.valueOf(45.00));
-        requestDto.setCategoryIds(List.of(100L));
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "Clean Code", "Robert Martin", "978-0-13-235088-4",
+                BigDecimal.valueOf(45.00), List.of(100L));
 
         mockMvc.perform(post("/books")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -63,6 +61,26 @@ class BookControllerTest {
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.title").value("Clean Code"))
                 .andExpect(jsonPath("$.author").value("Robert Martin"));
+    }
+
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/add-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @DisplayName("Create a new book with invalid data (empty title) - 400 Bad Request")
+    void createBook_InvalidRequest_BadRequest() throws Exception {
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "", "Robert Martin", "978-0-13-235088-4",
+                BigDecimal.valueOf(45.00), List.of(100L));
+
+        mockMvc.perform(post("/books")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
+                .andExpect(status().isBadRequest());
     }
 
     @Test
@@ -100,6 +118,21 @@ class BookControllerTest {
     }
 
     @Test
+    @WithMockUser(username = "user", roles = {"USER"})
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/add-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @DisplayName("Get book by non-existing ID - 404 Not Found")
+    void getBookById_NonExistingId_NotFound() throws Exception {
+        mockMvc.perform(get("/books/999")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
     @WithMockUser(username = "admin", roles = {"ADMIN"})
     @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
@@ -107,14 +140,11 @@ class BookControllerTest {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Update book with ADMIN role - 200 OK")
+    @DisplayName("Update book with valid ID and data - 200 OK")
     void updateBook_ValidId_Success() throws Exception {
-        CreateBookRequestDto requestDto = new CreateBookRequestDto();
-        requestDto.setTitle("Updated Hobbit");
-        requestDto.setAuthor("J.R.R. Tolkien");
-        requestDto.setIsbn("978-0-261-10221-7");
-        requestDto.setPrice(BigDecimal.valueOf(25.00));
-        requestDto.setCategoryIds(List.of(100L));
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "Updated Hobbit", "J.R.R. Tolkien", "978-0-261-10221-7",
+                BigDecimal.valueOf(25.00), List.of(100L));
 
         mockMvc.perform(put("/books/100")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -131,7 +161,27 @@ class BookControllerTest {
             executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
     @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
             executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    @DisplayName("Delete book with ADMIN role - 204 No Content")
+    @DisplayName("Update book with non-existing ID - 404 Not Found")
+    void updateBook_NonExistingId_NotFound() throws Exception {
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "Updated Hobbit", "J.R.R. Tolkien", "978-0-261-10221-7",
+                BigDecimal.valueOf(25.00), List.of(100L));
+
+        mockMvc.perform(put("/books/999")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(requestDto)))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/add-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+    @Sql(scripts = "classpath:database/clear-books-and-categories.sql",
+            executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+    @DisplayName("Delete book with valid ID - 204 No Content")
     void deleteById_ValidId_Success() throws Exception {
         mockMvc.perform(delete("/books/100")
                         .contentType(MediaType.APPLICATION_JSON))

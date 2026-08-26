@@ -19,6 +19,7 @@ import org.example.springbootadventure.model.Book;
 import org.example.springbootadventure.model.Category;
 import org.example.springbootadventure.repository.book.BookRepository;
 import org.example.springbootadventure.service.book.BookServiceImpl;
+import org.example.springbootadventure.util.TestUtil;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -45,39 +46,16 @@ class BookServiceTest {
     @Test
     @DisplayName("Verify createBook() saves and returns valid BookDto")
     void createBook_ValidRequestDto_ReturnsBookDto() {
-        CreateBookRequestDto requestDto = new CreateBookRequestDto();
-        requestDto.setTitle("Sample Book");
-        requestDto.setAuthor("Author");
-        requestDto.setIsbn("978-0-13-468599-1");
-        requestDto.setPrice(BigDecimal.valueOf(29.99));
-        requestDto.setCategoryIds(List.of(1L));
-
-        Category category = new Category();
-        category.setId(1L);
-        category.setName("Fiction");
-
-        Book book = new Book();
-        book.setTitle(requestDto.getTitle());
-        book.setAuthor(requestDto.getAuthor());
-        book.setIsbn(requestDto.getIsbn());
-        book.setPrice(requestDto.getPrice());
-        book.setCategories(Set.of(category));
-
-        Book savedBook = new Book();
-        savedBook.setId(1L);
-        savedBook.setTitle(book.getTitle());
-        savedBook.setAuthor(book.getAuthor());
-        savedBook.setIsbn(book.getIsbn());
-        savedBook.setPrice(book.getPrice());
-        savedBook.setCategories(book.getCategories());
-
-        BookDto expectedDto = new BookDto();
-        expectedDto.setId(1L);
-        expectedDto.setTitle(savedBook.getTitle());
-        expectedDto.setAuthor(savedBook.getAuthor());
-        expectedDto.setIsbn(savedBook.getIsbn());
-        expectedDto.setPrice(savedBook.getPrice());
-        expectedDto.setCategoryIds(List.of(1L));
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "Sample Book", "Author", "978-0-13-468599-1",
+                BigDecimal.valueOf(29.99), List.of(100L));
+        Category category = TestUtil.createCategory(100L, "Fiction", "Fiction books");
+        Book book = TestUtil.createBook(null, requestDto.getTitle(), requestDto.getAuthor(),
+                requestDto.getIsbn(), requestDto.getPrice(), Set.of(category));
+        Book savedBook = TestUtil.createBook(1L, book.getTitle(), book.getAuthor(),
+                book.getIsbn(), book.getPrice(), book.getCategories());
+        BookDto expectedDto = TestUtil.createBookDto(1L, savedBook.getTitle(),
+                savedBook.getAuthor(), savedBook.getIsbn(), savedBook.getPrice(), List.of(100L));
 
         when(bookMapper.toModel(requestDto)).thenReturn(book);
         when(bookRepository.save(book)).thenReturn(savedBook);
@@ -94,14 +72,10 @@ class BookServiceTest {
     @DisplayName("Verify getAll() returns page of BookDto")
     void getAll_ValidPageable_ReturnsBookDtoPage() {
         Pageable pageable = PageRequest.of(0, 10);
-        Book book = new Book();
-        book.setId(1L);
-        book.setTitle("Sample Book");
-
-        BookDto bookDto = new BookDto();
-        bookDto.setId(1L);
-        bookDto.setTitle("Sample Book");
-
+        Book book = TestUtil.createBook(1L, "Sample Book", "Author",
+                "978-0-13-468599-1", BigDecimal.valueOf(29.99), Set.of());
+        BookDto bookDto = TestUtil.createBookDto(1L, "Sample Book", "Author",
+                "978-0-13-468599-1", BigDecimal.valueOf(29.99), List.of());
         Page<Book> bookPage = new PageImpl<>(List.of(book), pageable, 1);
 
         when(bookRepository.findAll(pageable)).thenReturn(bookPage);
@@ -118,13 +92,10 @@ class BookServiceTest {
     @DisplayName("Verify getBookById() returns BookDto when book exists")
     void getBookById_ValidId_ReturnsBookDto() {
         Long bookId = 1L;
-        Book book = new Book();
-        book.setId(bookId);
-        book.setTitle("Sample Book");
-
-        BookDto expectedDto = new BookDto();
-        expectedDto.setId(bookId);
-        expectedDto.setTitle("Sample Book");
+        Book book = TestUtil.createBook(bookId, "Sample Book", "Author",
+                "978-0-13-468599-1", BigDecimal.valueOf(29.99), Set.of());
+        BookDto expectedDto = TestUtil.createBookDto(bookId, "Sample Book", "Author",
+                "978-0-13-468599-1", BigDecimal.valueOf(29.99), List.of());
 
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(book));
         when(bookMapper.toDto(book)).thenReturn(expectedDto);
@@ -150,20 +121,15 @@ class BookServiceTest {
     @DisplayName("Verify updateBook() updates and returns BookDto")
     void updateBook_ValidIdAndRequest_ReturnsUpdatedBookDto() {
         Long bookId = 1L;
-        CreateBookRequestDto requestDto = new CreateBookRequestDto();
-        requestDto.setTitle("Updated Title");
-        requestDto.setCategoryIds(List.of(1L));
-
-        Book existingBook = new Book();
-        existingBook.setId(bookId);
-
-        Book updatedBook = new Book();
-        updatedBook.setId(bookId);
-        updatedBook.setTitle(requestDto.getTitle());
-
-        BookDto expectedDto = new BookDto();
-        expectedDto.setId(bookId);
-        expectedDto.setTitle(requestDto.getTitle());
+        CreateBookRequestDto requestDto = TestUtil.createBookRequestDto(
+                "Updated Title", "Author", "978-0-13-468599-1",
+                BigDecimal.valueOf(35.00), List.of(100L));
+        Book existingBook = TestUtil.createBook(bookId, "Old Title", "Author",
+                "978-0-13-468599-1", BigDecimal.valueOf(29.99), Set.of());
+        Book updatedBook = TestUtil.createBook(bookId, requestDto.getTitle(),
+                requestDto.getAuthor(), requestDto.getIsbn(), requestDto.getPrice(), Set.of());
+        BookDto expectedDto = TestUtil.createBookDto(bookId, requestDto.getTitle(),
+                requestDto.getAuthor(), requestDto.getIsbn(), requestDto.getPrice(), List.of(100L));
 
         when(bookRepository.findById(bookId)).thenReturn(Optional.of(existingBook));
         when(bookRepository.save(existingBook)).thenReturn(updatedBook);
